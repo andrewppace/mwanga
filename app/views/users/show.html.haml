@@ -1,0 +1,11 @@
+=@user.username
+=@user.email
+=@user.created_at
+=@user.updated_at
+%ul
+  %li
+    =link_to "manage profiles", profiles_path
+  %li
+    =link_to "create contact", new_contact_path
+  %li
+    =link_to "contacts", contacts_path

@@ -1,0 +1,13 @@
+!!! 5
+%head
+%body
+  %h2
+    Hi #{@user.username},
+  %p
+    Welcome to www.mwanga.com!  
+  %p
+    You have successfully signed up and your username is: #{@user.username}
+  %p
+    To login to the site, just follow this link: #{link_to "Log In", login_url}.
+  %p
+    Thanks for joining and have a great day!

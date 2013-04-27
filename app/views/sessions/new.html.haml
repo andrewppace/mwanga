@@ -1,0 +1,18 @@
+-@page_title = "Login to your account"
+-unless @error.nil?
+  %div
+    =@error
+%form{method: "post", action: login_path}
+  %fieldset
+    %legend Login to your account
+    %ul
+      %li
+        %label{for: "username"} Username
+        %input{type: "text", id: "username", value: @user.username, name: "user[username]"}
+      %li
+        %label{for: "password"} Password
+        %input{type: "password", id: "password", value: @user.password, name: "user[password]"}
+      %li
+        %input{type: "submit", value: "Login"}
+        or
+        =link_to "Not a member?", signup_path

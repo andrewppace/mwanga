@@ -1,0 +1,34 @@
+-@page_title = "Signup for an account"
+%form{method: "post", action: create_path}
+  %fieldset
+    %legend Signup for an account
+    %ul
+      %li
+        %label{for: "username"} Username
+        %input{type: "text", id: "username", value: @user.username, name: "user[username]"}
+        -unless @user.errors.empty? && @user.errors[:username].empty?
+          =@user.errors[:username].to_sentence
+      %li
+        %label{for: "email"} Email
+        %input{type: "email", id: "email", value: @user.email, name: "user[email]"}
+        -unless @user.errors.empty? && @user.errors[:email].empty?
+          =@user.errors[:email].to_sentence
+      %li
+        %label{for: "password"} Password
+        %input{type: "password", id: "password", value: @user.password, name: "user[password]"}
+        -unless @user.errors.empty? && @user.errors[:password].empty?
+          =@user.errors[:password].to_sentence
+      %li
+        %label{for: "password_confirmation"} Confirm password
+        %input{type: "password", id: "password_confirmation", value: @user.password_confirmation, name: "user[password_confirmation]"}
+        -unless @user.errors.empty? && @user.errors[:password_confirmation].empty?
+          =@user.errors[:password_confirmation].to_sentence
+      %li
+        %input{type: "checkbox", id: "agreement", checked: @user.agreement, name: "user[agreement]", value: "yes"}
+        %label{for: "agreement"} By checking this, you agree to our terms and conditions.
+        -unless @user.errors.empty? && @user.errors[:agreement].empty?
+          =@user.errors[:agreement].to_sentence
+      %li
+        %input{type: "submit", value: "Signup"}
+        or
+        =link_to "Already a member?", login_path
