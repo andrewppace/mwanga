@@ -2,16 +2,19 @@ class User < ActiveRecord::Base
   APP_SALT = "f94de6e9a304a0d0abdabdd7c908f31a01124a38"
   
   #mass assignment
-  attr_accessible :email, :username, :password, :password_confirmation, :agreement
-  attr_accessor :password, :agreement
+  attr_accessible :email, :username, :password, :password_confirmation, :agreement, :first_name, :last_name
+  attr_accessor :password, :agreement, :first_name, :last_name
   
   #associations
   has_many :profiles
   has_many :contacts
   has_many :connections, foreign_key: "invitor_id", class_name: "Relationship"
   has_many :recipients, foreign_key: "invitee_id", class_name: "Relationship"
+  belongs_to :contact
 
   #validations
+  validates :first_name, presence: true, length: {in: 1..40}, on: :create
+  validates :last_name, presence: true, length: {in: 1..40}, on: :create
   validates :username, presence: true, length: {in: 3..40}, uniqueness: true, alphanumeric: true
   validates :email, presence: true, email: true, length: {in: 4..40}, nonwhitespace: true
   validates :password, presence: true, length: {in: 6..40}, nonwhitespace: true, confirmation: true, if: :password_needs_validation?
@@ -22,6 +25,7 @@ class User < ActiveRecord::Base
   before_create :set_email_confirmation_salt
   before_update :check_email_for_change
   after_create :send_welcome_email
+  after_create :create_contact
   
   #object state
   state_machine initial: :pending do
@@ -65,6 +69,12 @@ class User < ActiveRecord::Base
   end
 
 private
+  def save_contact
+    self.contact = Contact.new
+    self.contact.user_id = self.user.id
+    self.contact.save
+  end
+  
   def check_email_for_change
     if self.email_changed?
       self.email_confirmation_salt = generate_salt

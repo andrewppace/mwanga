@@ -4,7 +4,6 @@ class Email < ActiveRecord::Base
   
   #associations
   belongs_to :contact
-  has_and_belongs_to_many :profiles, join_table: "profiles_emails"
   
   #validations
   validate :address, presence: true, email: true

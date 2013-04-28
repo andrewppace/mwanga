@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(:version => 20130428141643) do
   end
 
   create_table "emails", :force => true do |t|
+    t.integer  "contact_id"
     t.string   "address"
     t.string   "description"
-    t.integer  "contact_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end

@@ -4,6 +4,16 @@
     %legend Signup for an account
     %ul
       %li
+        %label{for: "first_name"} First Name
+        %input{type: "text", id: "first_name", value: @user.first_name, name: "user[first_name]"}
+        -unless @user.errors.empty? && @user.errors[:first_name].empty?
+          =@user.errors[:first_name].to_sentence
+      %li
+        %label{for: "last_name"} Last Name
+        %input{type: "text", id: "last_name", value: @user.last_name, name: "user[last_name]"}
+        -unless @user.errors.empty? && @user.errors[:last_name].empty?
+          =@user.errors[:last_name].to_sentence
+      %li
         %label{for: "username"} Username
         %input{type: "text", id: "username", value: @user.username, name: "user[username]"}
         -unless @user.errors.empty? && @user.errors[:username].empty?
