@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Address:
+  = @email.address
+%p
+  %b Description:
+  = @email.description
+
+= link_to 'Edit', edit_email_path(@email)
+\|
+= link_to 'Back', emails_path

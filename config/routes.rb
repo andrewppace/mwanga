@@ -1,4 +1,7 @@
 Mwanga::Application.routes.draw do
+  resources :emails
+
+
   #  match "about" => "pages#about"
   #  match "terms" => "pages#terms"
   #  match "privary" => "pages#privacy"

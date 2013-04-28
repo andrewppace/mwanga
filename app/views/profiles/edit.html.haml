@@ -1,7 +1,12 @@
-%h1 Editing profile
-
-= render 'form'
-
-= link_to 'Show', @profile
-\|
-= link_to 'Back', profiles_path
+%form{method: "post", action: profile_path(@profile)}
+  %fieldset
+    %legend Update Profile
+    %input{type: "hidden", name: "_method", value: "put"}
+    %ul
+      %li
+        %label{for: "description"} Description
+        %input{type: "text", id: "description", value: @profile.description, name: "profile[description]"}
+        -unless @profile.errors.empty? && @profile.errors[:description].empty?
+          =@profile.errors[:description].to_sentence
+      %li
+        %input{type: "submit", value: "Update"}

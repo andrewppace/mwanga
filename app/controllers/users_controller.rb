@@ -34,5 +34,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @user = @current_user
+    @user.deactivate!
+    redirect_to(root_path, notice: 'Your account was successfully deactivated')
   end
 end

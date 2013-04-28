@@ -1,5 +1,11 @@
-%h1 New profile
-
-= render 'form'
-
-= link_to 'Back', profiles_path
+%form{method: "post", action: profiles_path}
+  %fieldset
+    %legend Create a Profile
+    %ul
+      %li
+        %label{for: "description"} Description
+        %input{type: "text", id: "description", value: @profile.description, name: "profile[description]"}
+        -unless @profile.errors.empty? && @profile.errors[:description].empty?
+          =@profile.errors[:description].to_sentence
+      %li
+        %input{type: "submit", value: "Create Profile"}
