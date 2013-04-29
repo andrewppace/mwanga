@@ -15,7 +15,7 @@
           -@user.profiles.each do |profile|
             %td
               -if profile.emails.map(&:id).include?(email.id)
-                %input{type: "checkbox", checked: true, name: "profiles[][#{profile.id}]emails[][#{email.id}]", value: "true"}
+                %input{type: "checkbox", checked: true, name: "profiles[#{profile.id}]emails[#{email.id}]", value: "true"}
               -else
-                %input{type: "checkbox", checked: false, name: "profiles[][#{profile.id}]emails[][#{email.id}]", value: "true"}
+                %input{type: "checkbox", checked: false, name: "profiles[#{profile.id}]emails[#{email.id}]", value: "true"}
   %input{type: "submit", value: "Save changes"}
