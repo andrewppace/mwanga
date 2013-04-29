@@ -1,5 +1,17 @@
-%h1 New email
-
-= render 'form'
-
-= link_to 'Back', emails_path
+-@page_title = "Create an email for #{@contact.first_name} #{@contact.last_name}"
+%form{method: "post", action: contact_emails_path(@contact)}
+  %fieldset
+    %legend Create an email
+    %ul
+      %li
+        %label{for: "address"} Address
+        %input{type: "text", id: "address", value: @email.address, name: "email[address]"}
+        -unless @email.errors.empty? && @email.errors[:address].empty?
+          =@email.errors[:address].to_sentence
+      %li
+        %label{for: "description"} Description
+        %input{type: "text", id: "description", value: @email.description, name: "email[description]"}
+        -unless @email.errors.empty? && @email.errors[:description].empty?
+          =@email.errors[:description].to_sentence
+      %li
+        %input{type: "submit", value: "Save Email"}

@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   #callbacks
   before_save :encrypt_password
   before_create :set_email_confirmation_salt
-  before_update :check_email_for_change
+  before_save :check_email_for_change
   after_create :send_welcome_email
   after_create :create_contact
   
@@ -49,8 +49,10 @@ class User < ActiveRecord::Base
     end
     event :unconfirm do
       transition :confirmed => :unconfirmed
+      transition :unconfirmed => same
     end
     after_transition :confirmed => :unconfirmed, do: :send_unconfirm_email
+    after_transition :unconfirmed => same, do: :send_unconfirm_email
   end
 
   def password_reset
@@ -80,11 +82,14 @@ private
   end
   
   def check_email_for_change
-    if self.email_changed?
+    @email_flag ||= false
+    if self.email_changed? && @email_flag == false
+      @email_flag = true
       self.email_confirmation_salt = generate_salt
       self.unconfirm
     end
   end
+  
   def set_email_confirmation_salt
     self.email_confirmation_salt = generate_salt
   end

@@ -18,6 +18,10 @@ class ContactsController < ApplicationController
       render "new"
     end
   end
+  
+  def edit
+    @contact = @current_user.contacts.select{|contact| contact.id.to_s == params[:id]}.first
+  end
     
   def show
     @contact = @current_user.contacts.select{|contact| contact.id.to_s == params[:id]}.first
@@ -26,7 +30,7 @@ class ContactsController < ApplicationController
   def update
     @contact = @current_user.contacts.select{|contact| contact.id.to_s == params[:id]}.first
     if @contact.update_attributes(params[:contact])
-      render @contact, notice: "successfully updated contact"
+      redirect_to @contact, notice: "successfully updated contact"
     else
       render "edit"
     end

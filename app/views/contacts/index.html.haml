@@ -1,19 +1,10 @@
-%h1 Listing contacts
-
-%table
-  %tr
-    %th Name
-    %th
-    %th
-    %th
-
-  - @contacts.each do |contact|
-    %tr
-      %td= contact.name
-      %td= link_to 'Show', contact
-      %td= link_to 'Edit', edit_contact_path(contact)
-      %td= link_to 'Destroy', contact, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
+%h1 Contacts
+- @contacts.each do |contact|
+  %p
+    #{contact.first_name} #{contact.last_name}
+    -if contact.id.to_s == contact.user.contact_id.to_s
+      *
+    = link_to 'Show', contact
+    = link_to 'Edit', edit_contact_path(contact)
 
 = link_to 'New Contact', new_contact_path

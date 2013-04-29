@@ -4,6 +4,7 @@ class Profile < ActiveRecord::Base
   
   #associations
   belongs_to :user
+  has_and_belongs_to_many :emails, join_table: "profiles_emails"
 
   #validations
   validates :description, presence: true, length: {in: 1..40}

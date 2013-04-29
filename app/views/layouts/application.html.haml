@@ -3,4 +3,15 @@
   %head
     %title Mwanga - #{@page_title || "An Enlightened Addressbook"}
   %body
-    = yield
+    -if flash[:notice]
+      %section{id: "notices"}
+        =flash[:notice]
+    %header
+      -if @current_user
+        =link_to "my account", account_path
+        =link_to "update account", edit_path
+        =link_to "privacy", privacy_edit_path
+        =link_to "logout", logout_path
+    %section{id: "main"}
+      =yield
+    %footer

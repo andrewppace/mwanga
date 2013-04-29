@@ -1,8 +1,13 @@
-%p#notice= notice
-
-%p
-  %b Name:
-  = @contact.name
+%div 
+  Names
+  %p
+    Name: #{@contact.first_name} #{@contact.last_name}
+%div 
+  Emails
+  -@contact.emails.each do |email|
+    %p
+      email: #{email.address}
+      description: #{email.description}
 
 = link_to 'Edit', edit_contact_path(@contact)
 \|
