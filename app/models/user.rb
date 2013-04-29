@@ -69,10 +69,14 @@ class User < ActiveRecord::Base
   end
 
 private
-  def save_contact
-    self.contact = Contact.new
-    self.contact.user_id = self.user.id
-    self.contact.save
+  def create_contact
+    c = Contact.new
+    c.user_id = self.id
+    c.first_name = self.first_name
+    c.last_name = self.last_name
+    c.save
+    self.contact = c
+    pp self.save
   end
   
   def check_email_for_change

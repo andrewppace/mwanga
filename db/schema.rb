@@ -15,6 +15,8 @@ ActiveRecord::Schema.define(:version => 20130428141643) do
 
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
+    t.string   "first_name"
+    t.string   "last_name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -41,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20130428141643) do
 
   create_table "users", :force => true do |t|
     t.string   "username"
+    t.integer  "contact_id"
     t.string   "email"
     t.string   "password_salt"
     t.string   "password_hash"

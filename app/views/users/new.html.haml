@@ -5,7 +5,7 @@
     %ul
       %li
         %label{for: "first_name"} First Name
-        %input{type: "text", id: "first_name", value: @user.first_name, name: "user[first_name]"}
+        %input{type: "text", id: "first_name", value: @user.first_name, name: "user[first_name]", autofocus: true}
         -unless @user.errors.empty? && @user.errors[:first_name].empty?
           =@user.errors[:first_name].to_sentence
       %li
