@@ -75,8 +75,8 @@ private
     c.first_name = self.first_name
     c.last_name = self.last_name
     c.save
-    self.contact = c
-    pp self.save
+    #should change this!
+    self.update_column(:contact_id, c.id)
   end
   
   def check_email_for_change

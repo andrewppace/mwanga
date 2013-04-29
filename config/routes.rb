@@ -13,10 +13,16 @@ Mwanga::Application.routes.draw do
   match "account" => "users#show"
   match "create" => "users#create"
   match "edit" => "users#edit"
-  match "update" => "users#update"  
+  match "update" => "users#update"
   
   resources :profiles
-  resources :contacts
+  
+  match "privacy/edit" => "privacy#edit"
+  match "privacy/update" => "privacy#update"
+  
+  resources :contacts do
+    resources :emails
+  end
   root to: "pages#home"
   # The priority is based upon order of creation:
   # first created -> highest priority.
