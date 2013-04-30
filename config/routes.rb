@@ -21,6 +21,7 @@ Mwanga::Application.routes.draw do
   
   resources :contacts do
     resources :emails
+    resources :addresses
   end
   
   root to: "pages#home"

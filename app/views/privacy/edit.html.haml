@@ -1,6 +1,6 @@
 %form{method: "post", action: privacy_update_path}
   %table
-    %caption Profiles
+    %caption Privacy Settings
     %thead
       %tr
         %th
@@ -9,6 +9,9 @@
             =profile.description
             =link_to "(edit)", edit_profile_path(profile)
     %tbody
+      %tr
+        %td{colspan: "#{@user.profiles.count + 1}"}
+          Emails
       -@user.contact.emails.each do |email|
         %tr
           %th
@@ -20,4 +23,7 @@
                 %input{type: "checkbox", checked: true, name: "profiles[#{profile.id}]emails[#{email.id}]", value: "true"}
               -else
                 %input{type: "checkbox", checked: false, name: "profiles[#{profile.id}]emails[#{email.id}]", value: "true"}
-  %input{type: "submit", value: "Save changes"}
+    %tfoot
+      %tr
+        %td{colspan: "#{@user.profiles.count + 1}"}
+          %input{type: "submit", value: "Save changes"}

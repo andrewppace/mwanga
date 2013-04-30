@@ -7,5 +7,5 @@ class Email < ActiveRecord::Base
   
   #validations
   validates :address, presence: true, email: true
-  validates :description, length: {in: 1..40}, allow_nil: true
+  validates :description, length: {maximum: 40}, allow_nil: true
 end
