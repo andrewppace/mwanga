@@ -31,4 +31,10 @@ class ProfilesController < ApplicationController
       render :edit
     end
   end
+  
+  def destroy
+    @profile = @current_user.profiles.select{|profile| profile.id.to_s == params[:id].to_s}.first
+    @profile.destroy
+    redirect_to profiles_path, notice: "Profile successfully destroyed"
+  end
 end
