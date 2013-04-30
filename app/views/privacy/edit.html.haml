@@ -7,11 +7,13 @@
         -@user.profiles.each do |profile|
           %th
             =profile.description
+            =link_to "(edit)", edit_profile_path(profile)
     %tbody
       -@user.contact.emails.each do |email|
         %tr
           %th
             =email.address
+            =link_to "(edit)", edit_contact_email_path(email.contact, email)
           -@user.profiles.each do |profile|
             %td
               -if profile.emails.map(&:id).include?(email.id)

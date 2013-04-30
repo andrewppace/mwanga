@@ -6,6 +6,9 @@
     -if flash[:notice]
       %section{id: "notices"}
         =flash[:notice]
+    -if flash[:error]
+      %section{id: "errors"}
+        =flash[:error]
     %header
       -if @current_user
         =link_to "my account", account_path

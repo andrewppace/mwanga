@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  APP_SALT = "f94de6e9a304a0d0abdabdd7c908f31a01124a38"
   
   #mass assignment
   attr_accessible :email, :username, :password, :password_confirmation, :agreement, :first_name, :last_name
@@ -53,6 +52,10 @@ class User < ActiveRecord::Base
     end
     after_transition :confirmed => :unconfirmed, do: :send_unconfirm_email
     after_transition :unconfirmed => same, do: :send_unconfirm_email
+  end
+  
+  def email_confirmation_url
+    "#{CONFIG['url']['protocol']}://#{CONFIG['url']['host']}/confirm/email/#{self.email_confirmation_salt}"
   end
 
   def password_reset

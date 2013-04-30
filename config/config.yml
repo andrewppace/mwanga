@@ -1,0 +1,9 @@
+production:
+  url:
+    protocol: "https"
+    host: "mwanga.com"
+
+development:
+  url:
+    protocol: "http"
+    host: "localhost:3000"

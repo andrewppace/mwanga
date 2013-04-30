@@ -19,6 +19,6 @@ class PrivacyController < ApplicationController
         end
       end
     end
-    redirect_to privacy_edit_path, notice: "Your privacy settings were saved"
+    redirect_to account_path, notice: "Your privacy settings were saved"
   end
 end

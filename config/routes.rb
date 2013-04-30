@@ -1,4 +1,6 @@
 Mwanga::Application.routes.draw do
+  get "confirm/email"
+
   resources :emails
 
   match "login" => "sessions#new"
@@ -14,6 +16,8 @@ Mwanga::Application.routes.draw do
   
   match "privacy/edit" => "privacy#edit"
   match "privacy/update" => "privacy#update"
+  
+  match "confirm/email/:email_confirmation_salt" => "confirm#email"
   
   resources :contacts do
     resources :emails
