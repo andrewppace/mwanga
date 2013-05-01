@@ -1,0 +1,8 @@
+%div{class: "email"}
+  -if email.description.blank?
+    Address: #{email.address}
+  -else
+    #{email.description}: #{email.address}
+  =link_to 'Edit', edit_contact_email_path(email.contact, email)
+  \|
+  =link_to 'Back', contact_emails_path(email.contact)

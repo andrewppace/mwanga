@@ -26,6 +26,10 @@ class ContactsController < ApplicationController
   def show
     @contact = @current_user.contacts.select{|contact| contact.id.to_s == params[:id]}.first
   end
+  
+  def myinfo
+    @contact = @current_user.contact
+  end
     
   def update
     @contact = @current_user.contacts.select{|contact| contact.id.to_s == params[:id]}.first

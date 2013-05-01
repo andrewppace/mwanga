@@ -2,6 +2,8 @@
 %html
   %head
     %title Mwanga - #{@page_title || "An Enlightened Addressbook"}
+    =stylesheet_link_tag "reset"
+    =stylesheet_link_tag "table"
   %body
     -if flash[:notice]
       %section{id: "notices"}
@@ -12,8 +14,11 @@
     %header
       -if @current_user
         =link_to "my account", account_path
+        \|
         =link_to "update account", edit_path
+        \|
         =link_to "privacy", privacy_edit_path
+        \|
         =link_to "logout", logout_path
     %section{id: "main"}
       =yield

@@ -13,7 +13,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.new(params[:profile])
     @profile.user_id = @current_user.id
     if @profile.save
-      redirect_to profiles_path, notice: "Successfully created profile"
+      redirect_to privacy_edit_path, notice: "Successfully created profile"
     else
       render :new
     end

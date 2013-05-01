@@ -1,21 +1,3 @@
-%h1 Listing emails
-
-%table
-  %tr
-    %th Address
-    %th Description
-    %th
-    %th
-    %th
-
-  - @emails.each do |email|
-    %tr
-      %td= email.address
-      %td= email.description
-      %td= link_to 'Show', email
-      %td= link_to 'Edit', edit_email_path(email)
-      %td= link_to 'Destroy', email, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
+-@emails.each do |email|
+  =render partial: "email", locals: {email: email}
 = link_to 'New Email', new_email_path

@@ -1,6 +1,10 @@
 class EmailsController < ApplicationController
   before_filter :ensure_user
   before_filter :ensure_contact
+
+  def index
+    @emails = @contact.emails
+  end
   
   def new
     @email = @contact.emails.build
