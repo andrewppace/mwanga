@@ -1,5 +1,6 @@
 class ContactsController < ApplicationController
   before_filter :ensure_user
+  before_filter :redirect_myinfo
     
   def index
     @contacts = @current_user.contacts
@@ -29,6 +30,7 @@ class ContactsController < ApplicationController
   
   def myinfo
     @contact = @current_user.contact
+    render "show"
   end
     
   def update
@@ -44,5 +46,11 @@ class ContactsController < ApplicationController
     @contact = @current_user.contacts.select{|contact| contact.id.to_s == params[:id]}.first
     @contact.destroy
     redirect_to contacts_path, notice: "successfully removed contact"
+  end
+private
+  def redirect_myinfo
+    if @current_user.contact.id.to_s == params[:id]
+      redirect_to myinfo_path
+    end
   end
 end

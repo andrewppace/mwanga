@@ -8,15 +8,18 @@
           %th
             =profile.description
             =link_to "(edit)", edit_profile_path(profile)
+            %form{method: "post", action: profile_path(profile)}
+              %input{type: "hidden", name: "_method", value: "delete"}
+              %input{type: "submit", value: "Delete"}
     %tbody
       %tr
         %td{colspan: "#{@user.profiles.count + 1}"}
-          Emails
+          Emails (#{link_to "add", new_contact_email_path(@user.contact)})
       -@user.contact.emails.each do |email|
         %tr
           %th
             =email.address
-            =link_to "(edit)", edit_contact_email_path(email.contact, email)
+            =link_to "(edit)", edit_contact_email_path(@user.contact, email)
           -@user.profiles.each do |profile|
             %td
               -if profile.emails.map(&:id).include?(email.id)

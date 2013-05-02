@@ -1,26 +1,18 @@
-%form{method: "post", action: update_path}
+-@page_title = "Update contact"
+%form{method: "post", action: contact_path(@contact)}
+  %input{type: "hidden", name: "_method", value: "put"}
   %fieldset
-    %legend Update your account
+    %legend Update contact
     %ul
       %li
-        %label{for: "username"} Username
-        %input{type: "text", id: "username", value: @user.username, name: "user[username]", readonly: "readonly"}
-        -unless @user.errors.empty? && @user.errors[:username].empty?
-          =@user.errors[:username].to_sentence
+        %label{for: "first_name"} First Name
+        %input{type: "text", id: "first_name", value: @contact.first_name, name: "contact[first_name]"}
+        -unless @contact.errors.empty? && @contact.errors[:first_name].empty?
+          =@contact.errors[:first_name].to_sentence
       %li
-        %label{for: "email"} Email
-        %input{type: "text", id: "email", value: @user.email, name: "user[email]"}
-        -unless @user.errors.empty? && @user.errors[:email].empty?
-          =@user.errors[:email].to_sentence
-      %li
-        %label{for: "password"} Password
-        %input{type: "password", id: "password", value: @user.password, name: "user[password]"}
-        -unless @user.errors.empty? && @user.errors[:password].empty?
-          =@user.errors[:password].to_sentence
-      %li
-        %label{for: "password_confirmation"} Confirm password
-        %input{type: "password", id: "password_confirmation", value: @user.password_confirmation, name: "user[password_confirmation]"}
-        -unless @user.errors.empty? && @user.errors[:password_confirmation].empty?
-          =@user.errors[:password_confirmation].to_sentence
+        %label{for: "last_name"} Last Name
+        %input{type: "text", id: "last_name", value: @contact.last_name, name: "contact[last_name]"}
+        -unless @contact.errors.empty? && @contact.errors[:last_name].empty?
+          =@contact.errors[:last_name].to_sentence
       %li
         %input{type: "submit", value: "Update"}

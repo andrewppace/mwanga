@@ -1,12 +1,6 @@
 %div 
-  Names
-  %p
-    Name: #{@contact.first_name} #{@contact.last_name}
+  Name: #{@contact.first_name} #{@contact.last_name} (#{link_to 'edit', edit_contact_path(@contact)})
 %div 
-  Emails
+  Emails (#{link_to "add", new_contact_email_path(@contact)})
   -@contact.emails.each do |email|
     =render partial: "emails/email", locals: {email: email}
-
-= link_to 'Edit', edit_contact_path(@contact)
-\|
-= link_to 'Back', contacts_path

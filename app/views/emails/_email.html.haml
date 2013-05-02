@@ -4,5 +4,6 @@
   -else
     #{email.description}: #{email.address}
   =link_to 'Edit', edit_contact_email_path(email.contact, email)
-  \|
-  =link_to 'Back', contact_emails_path(email.contact)
+  %form{method: "post", action: contact_email_path(email.contact, email)}
+    %input{type: "hidden", name: "_method", value: "delete"}
+    %input{type: "submit", value: "Delete"}

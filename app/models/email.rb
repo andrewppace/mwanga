@@ -6,6 +6,7 @@ class Email < ActiveRecord::Base
   belongs_to :contact
   
   #validations
+  validates :contact_id, presence: true
   validates :address, presence: true, email: true
   validates :description, length: {maximum: 40}, allow_nil: true
 end
