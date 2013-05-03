@@ -6,6 +6,7 @@ class Contact < ActiveRecord::Base
   #associations
   belongs_to :user
   has_many :emails
+  has_many :addresses
   
   #validations
   validates :first_name, presence: true, length: {in: 1..40}

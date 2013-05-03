@@ -1,4 +1,4 @@
-class Address
+class Address < ActiveRecord::Base
   #mass assignment
   attr_accessible :pobox, :extended, :street, :city, :state, :zipcode, :country, :label
     
