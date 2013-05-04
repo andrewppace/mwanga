@@ -5,6 +5,6 @@
   -@contact.emails.each do |email|
     =render partial: "emails/email", locals: {email: email}
 %div 
-  Emails (#{link_to "add", new_contact_address_path(@contact)})
+  Addresses (#{link_to "add", new_contact_address_path(@contact)})
   -@contact.addresses.each do |address|
     =render partial: "addresses/address", locals: {address: address}

@@ -2,12 +2,18 @@
 %form{method: "post", action: contact_addresses_path(@contact)}
   %fieldset
     %legend Create an address
+    -unless @address.errors.empty? && @address.errors[:base].empty?
+      =@address.errors[:base].to_sentence
     %ul
       %li
         %label{for: "street"} Street:
         %input{type: "text", id: "street", value: @address.street, name: "address[street]"}
         -unless @address.errors.empty? && @address.errors[:street].empty?
           =@address.errors[:street].to_sentence
+      %li
+        %input{type: "text", id: "extended", value: @address.extended, name: "address[extended]"}
+        -unless @address.errors.empty? && @address.errors[:extended].empty?
+          =@address.errors[:extended].to_sentence
       %li
         %label{for: "city"} City:
         %input{type: "text", id: "city", value: @address.city, name: "address[city]"}

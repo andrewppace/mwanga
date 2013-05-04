@@ -2,7 +2,6 @@
 %html
   %head
     %title Mwanga - #{@page_title || "An Enlightened Addressbook"}
-    =stylesheet_link_tag "application"
   %body
     -if flash[:notice]
       %section{id: "notices"}
@@ -11,14 +10,16 @@
       %section{id: "errors"}
         =flash[:error]
     %header
-      -if @current_user
-        =link_to "home", account_path
-        \|
-        =link_to "my info", myinfo_path
-        \|
-        =link_to "privacy", privacy_edit_path
-        \|
-        =link_to "logout", logout_path
+      %nav
+        %ul
+          %li
+            =link_to "home", account_path
+          %li
+            =link_to "my info", myinfo_path
+          %li
+            =link_to "privacy", privacy_edit_path
+          %li
+            =link_to "logout", logout_path
     %section{id: "main"}
       =yield
     %footer
