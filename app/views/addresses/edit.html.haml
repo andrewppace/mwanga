@@ -1,0 +1,42 @@
+-@page_title = "Update an address for #{@contact.first_name} #{@contact.last_name}"
+%form{method: "post", action: contact_address_path(@contact, @address)}
+  %input{type: "hidden", name: "_method", value: "put"}
+  %fieldset
+    %legend Update address
+    -unless @address.errors.empty? && @address.errors[:base].empty?
+      =@address.errors[:base].to_sentence
+    %ul
+      %li
+        %label{for: "street"} Street:
+        %input{type: "text", id: "street", value: @address.street, name: "address[street]"}
+        -unless @address.errors.empty? && @address.errors[:street].empty?
+          =@address.errors[:street].to_sentence
+      %li
+        %input{type: "text", id: "extended", value: @address.extended, name: "address[extended]"}
+        -unless @address.errors.empty? && @address.errors[:extended].empty?
+          =@address.errors[:extended].to_sentence
+      %li
+        %label{for: "city"} City:
+        %input{type: "text", id: "city", value: @address.city, name: "address[city]"}
+        -unless @address.errors.empty? && @address.errors[:city].empty?
+          =@address.errors[:city].to_sentence
+      %li
+        %label{for: "state"} State/Province/Region:
+        %input{type: "text", id: "state", value: @address.state, name: "address[state]"}
+        -unless @address.errors.empty? && @address.errors[:state].empty?
+          =@address.errors[:state].to_sentence
+      %li
+        %label{for: "zipcode"} Zip:
+        %input{type: "text", id: "zipcode", value: @address.zipcode, name: "address[zipcode]"}
+        -unless @address.errors.empty? && @address.errors[:zipcode].empty?
+          =@address.errors[:zipcode].to_sentence
+      -array = []
+      -country_select = Address::COUNTRIES.each{|country| array << "<option value=#{country}>#{country}</option>"}
+      %li
+        %label{for: "country"} Country:
+        -pp array.to_s
+        =select_tag(:country, array.to_s, {name: "address[country]"})
+        -unless @address.errors.empty? && @address.errors[:country].empty?
+          =@address.errors[:country].to_sentence
+      %li
+        %input{type: "submit", value: "Update Address"}

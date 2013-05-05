@@ -20,7 +20,7 @@
         -unless @address.errors.empty? && @address.errors[:city].empty?
           =@address.errors[:city].to_sentence
       %li
-        %label{for: "state"} State:
+        %label{for: "state"} State/Province/Region:
         %input{type: "text", id: "state", value: @address.state, name: "address[state]"}
         -unless @address.errors.empty? && @address.errors[:state].empty?
           =@address.errors[:state].to_sentence
@@ -29,5 +29,10 @@
         %input{type: "text", id: "zipcode", value: @address.zipcode, name: "address[zipcode]"}
         -unless @address.errors.empty? && @address.errors[:zipcode].empty?
           =@address.errors[:zipcode].to_sentence
+      %li
+        %label{for: "country"} Country:
+        =select(:address, :country, options_for_select(Address::COUNTRIES))
+        -unless @address.errors.empty? && @address.errors[:country].empty?
+          =@address.errors[:country].to_sentence
       %li
         %input{type: "submit", value: "Save Address"}
