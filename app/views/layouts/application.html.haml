@@ -2,13 +2,10 @@
 %html
   %head
     %title Mwanga - #{@page_title || "An Enlightened Addressbook"}
+    =stylesheet_link_tag "application"
   %body
-    -if flash[:notice]
-      %section{id: "notices"}
-        =flash[:notice]
-    -if flash[:error]
-      %section{id: "errors"}
-        =flash[:error]
+    -flash.each do |key, msg|
+      =content_tag :div, msg, :id => key
     %header
       %nav
         %ul

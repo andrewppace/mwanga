@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Invitor:
+  = @relationship.invitor_id
+%p
+  %b Invitee:
+  = @relationship.invitee_id
+%p
+  %b State:
+  = @relationship.state
+
+= link_to 'Edit', edit_relationship_path(@relationship)
+\|
+= link_to 'Back', relationships_path

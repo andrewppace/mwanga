@@ -8,6 +8,7 @@ class PrivacyController < ApplicationController
     @user = @current_user
     @user.profiles.each do |profile|
       profile.emails = []
+      profile.addresses = []
     end
     if params[:profiles]
       params[:profiles].each do |profile_id, profile_hash|
@@ -15,7 +16,10 @@ class PrivacyController < ApplicationController
         if @user.profiles.map(&:id).map(&:to_s).include?(profile_id)
           profile_hash[:emails].each do |email_id, email_value|
             profile.emails << Email.find(email_id)
-          end
+          end if profile_hash[:emails]
+          profile_hash[:addresses].each do |address_id, address_value|
+            profile.addresses << Address.find(address_id)
+          end if profile_hash[:addresses]
         end
       end
     end

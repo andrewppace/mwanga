@@ -30,12 +30,17 @@
         %input{type: "text", id: "zipcode", value: @address.zipcode, name: "address[zipcode]"}
         -unless @address.errors.empty? && @address.errors[:zipcode].empty?
           =@address.errors[:zipcode].to_sentence
-      -array = []
-      -country_select = Address::COUNTRIES.each{|country| array << "<option value=#{country}>#{country}</option>"}
       %li
         %label{for: "country"} Country:
-        -pp array.to_s
-        =select_tag(:country, array.to_s, {name: "address[country]"})
+        %select{id: "country", name: "address[country]"}
+          -Address::COUNTRIES.each do |country|
+            -if @address.country == country
+              %option{value: country, selected: true}
+                =country
+            -else
+              %option{value: country}
+                =country
+            
         -unless @address.errors.empty? && @address.errors[:country].empty?
           =@address.errors[:country].to_sentence
       %li

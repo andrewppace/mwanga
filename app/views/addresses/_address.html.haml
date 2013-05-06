@@ -1,35 +1,20 @@
 %div{class: "address"}
-  -if address.street
+  -unless address.street.blank?
     =address.street
     %br
-  -if address.extended
+  -unless address.extended.blank?
     =address.extended
     %br
-
-  -if address.city && address.state && address.zipcode
-    #{address.city}, #{address.state}, #{address.zipcode}
-    %br
-  -elsif address.city && address.state
-    #{address.city}, #{address.state}
-    %br
-  -elsif address.city && address.zipcode
-    #{address.city}, #{address.zipcode}
-    %br
-  -elsif address.state && address.zipcode
-    #{address.state}, #{address.zipcode}
-    %br
-  -elsif address.city
+  -unless address.city.blank?
     =address.city
-    %br
-  -elsif address.state
-    address.state
-    %br
-  -elsif address.zipcode
+  -unless address.state.blank?
+    =address.state
+  -unless address.zipcode.blank?
     =address.zipcode
+  -unless address.country.blank?
     %br
-
-  -if address.country
     =address.country
+  %br
   =link_to 'Edit', edit_contact_address_path(address.contact, address)
   %form{method: "post", action: contact_address_path(address.contact, address)}
     %input{type: "hidden", name: "_method", value: "delete"}

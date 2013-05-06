@@ -31,7 +31,10 @@
           =@address.errors[:zipcode].to_sentence
       %li
         %label{for: "country"} Country:
-        =select(:address, :country, options_for_select(Address::COUNTRIES))
+        %select{id: "country", name: "address[country]"}
+          -Address::COUNTRIES.each do |country|
+            %option{value: country}
+              =country
         -unless @address.errors.empty? && @address.errors[:country].empty?
           =@address.errors[:country].to_sentence
       %li

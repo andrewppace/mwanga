@@ -18,7 +18,7 @@
       -@user.contact.emails.each do |email|
         %tr
           %th
-            =email.address
+            #{email.description.blank?? "Address" : email.description}: #{email.address}
             =link_to "(edit)", edit_contact_email_path(@user.contact, email)
           -@user.profiles.each do |profile|
             %td
@@ -26,6 +26,19 @@
                 %input{type: "checkbox", checked: true, name: "profiles[#{profile.id}]emails[#{email.id}]", value: "true"}
               -else
                 %input{type: "checkbox", checked: false, name: "profiles[#{profile.id}]emails[#{email.id}]", value: "true"}
+      %tr
+        %td{colspan: "#{@user.profiles.count + 1}"}
+          Addresses (#{link_to "add", new_contact_address_path(@user.contact)})
+      -@user.contact.addresses.each do |address|
+        %tr
+          %th
+            =render partial: "addresses/address", locals: {address: address}
+          -@user.profiles.each do |profile|
+            %td
+              -if profile.addresses.map(&:id).include?(address.id)
+                %input{type: "checkbox", checked: true, name: "profiles[#{profile.id}]addresses[#{address.id}]", value: "true"}
+              -else
+                %input{type: "checkbox", checked: false, name: "profiles[#{profile.id}]addresses[#{address.id}]", value: "true"}
     %tfoot
       %tr
         %td{colspan: "#{@user.profiles.count + 1}"}

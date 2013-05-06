@@ -1,0 +1,23 @@
+%h1 Listing relationships
+
+%table
+  %tr
+    %th Invitor
+    %th Invitee
+    %th State
+    %th
+    %th
+    %th
+
+  - @relationships.each do |relationship|
+    %tr
+      %td= relationship.invitor_id
+      %td= relationship.invitee_id
+      %td= relationship.state
+      %td= link_to 'Show', relationship
+      %td= link_to 'Edit', edit_relationship_path(relationship)
+      %td= link_to 'Destroy', relationship, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Relationship', new_relationship_path
