@@ -1,5 +1,4 @@
 class AddressesController < ApplicationController
-  before_filter :ensure_user
   before_filter :ensure_contact
 
   def index

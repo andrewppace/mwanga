@@ -1,7 +1,4 @@
 class UsersController < ApplicationController
-  before_filter :ensure_user, except: [:new, :create]
-  before_filter :exclude_user, only: [:new, :create]
-    
   def new
     @user = User.new
   end

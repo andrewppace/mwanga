@@ -1,5 +1,4 @@
 class ConfirmController < ApplicationController
-  before_filter :ensure_user
   before_filter :check_already_confirmed, only: [:email]
 
   def email

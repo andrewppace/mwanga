@@ -1,5 +1,4 @@
 class RequestsController < ApplicationController
-  before_filter :ensure_user
   def index
     @requests = @current_user.requests
   end

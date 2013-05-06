@@ -1,5 +1,4 @@
 class InvitationsController < ApplicationController
-  before_filter :ensure_user
   def index
     @invitations = @current_user.invitations
   end

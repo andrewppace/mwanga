@@ -15,7 +15,7 @@ Mwanga::Application.routes.draw do
   match "edit" => "users#edit"
   match "update" => "users#update"
   
-  resources :profiles, only: [:new, :create, :edit, :update, :destroy]
+  resources :profiles
   
   match "privacy/edit" => "privacy#edit"
   match "privacy/update" => "privacy#update"

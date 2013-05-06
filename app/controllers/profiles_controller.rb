@@ -1,6 +1,4 @@
 class ProfilesController < ApplicationController
-  before_filter :ensure_user
-  
   def index
     @profiles = @current_user.profiles
   end
@@ -33,7 +31,7 @@ class ProfilesController < ApplicationController
   end
   
   def destroy
-    @profile = @current_user.profiles.select{|profile| profile.id.to_s == params[:id].to_s}.first
+    @profile = @current_user.profiles.select{|profile| profile.id.to_s == params[:id]}.first
     @profile.destroy
     redirect_to account_path, notice: "Profile successfully destroyed"
   end
