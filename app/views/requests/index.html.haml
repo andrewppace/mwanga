@@ -1,0 +1,18 @@
+-unless @requests.empty?
+  -@requests.each do |request|
+    %form{method: "post", action: request_path(request)}
+      %input{type: "hidden", name: "_method", value: "put"}
+      %ul
+        %li
+          #{request.invitor.contact.first_name} #{request.invitor.contact.last_name}
+        %li
+          -request.invitee.profiles.each do |profile|
+            %input{type: "radio", name: "request[profile_id]", value: profile.id.to_s}
+              =profile.description
+        %li
+          %input{type: "submit", value: "Connect"}
+    %form{method: "post", action: request_path(request)}
+      %input{type: "hidden", name: "_method", value: "delete"}
+      %input{type: "submit", value: "Deny"}
+-else
+  You don't have any pending requests

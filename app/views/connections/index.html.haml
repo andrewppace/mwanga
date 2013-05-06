@@ -1,0 +1,7 @@
+-@contacts.each do |contact|
+  -unless contact.emails.empty?
+    -contact.emails.each do |email|
+      =render partial: "emails/email", locals: {email: email}
+  -unless contact.addresses.empty?
+    -contact.addresses.each do |address|
+      =render partial: "addresses/address", locals: {address: address}

@@ -29,15 +29,7 @@ Mwanga::Application.routes.draw do
   
   resources :invitations
   resources :requests
-  
-  resources :relationships do
-    collection do
-      get "requests"
-    end
-    member do
-      put "confirm"
-    end
-  end
+  resources :connections
   
   match "myinfo" => "contacts#myinfo"
   

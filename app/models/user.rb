@@ -76,6 +76,14 @@ class User < ActiveRecord::Base
   def requests
     Relationship.where(invitee_id: self.id, state: "pending")
   end
+  
+  def invitations
+    Relationship.where(invitor_id: self.id, state: "pending")
+  end
+  
+  def connections
+    Relationship.where(invitor_id: self.id, state: "active").map(&:profile)
+  end
 
 private
   def create_contact

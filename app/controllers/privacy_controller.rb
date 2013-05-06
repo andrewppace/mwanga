@@ -2,6 +2,9 @@ class PrivacyController < ApplicationController
   before_filter :ensure_user
   def edit
     @user = @current_user
+    if @user.profiles.empty?
+      redirect_to account_path, notice: "You need to create a profile first"
+    end
   end
   
   def update

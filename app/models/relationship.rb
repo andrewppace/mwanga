@@ -7,13 +7,22 @@ class Relationship < ActiveRecord::Base
   #validations
   validates :invitor_id, presence: true
   validates :invitee_id, presence: true
-  validates :profile_id, presence: true, if: :profile_present_if_state_anything_but_pending
+  validates :profile_id, presence: true, if: :profile_present_if_state_anything_but_pending_cancelled_rejected
   validate :invitor_id_invitee_id_unique
+  validate :invitor_id_invitee_id_not_the_same
 
   #state
   state_machine :initial => :pending do
     event :activate do
       transition :pending => :active
+    end
+    
+    event :cancel do
+      transition :pending => :cancelled
+    end
+    
+    event :reject do
+      transition :pending => :rejected
     end
     
     event :invitor_inactivate do
@@ -39,8 +48,14 @@ class Relationship < ActiveRecord::Base
 
 private
 
-  def profile_present_if_state_anything_but_pending
-    self.pending?
+  def profile_present_if_state_anything_but_pending_cancelled_rejected
+    !self.pending? && !self.cancelled? && !self.rejected?
+  end
+
+  def invitor_id_invitee_id_not_the_same
+    if self.invitee_id == self.invitor_id
+      self.errors.add(:base) << "you can't invite yourself"
+    end
   end
   
   def invitor_id_invitee_id_unique

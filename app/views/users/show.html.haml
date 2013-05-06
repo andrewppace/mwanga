@@ -5,13 +5,13 @@
 =@user.created_at
 \|
 =@user.updated_at
-%form{method: "post", action: relationships_path}
+%form{method: "post", action: invitations_path}
   %fieldset
     %legend Create a connection
     %ul
       %li
         %label{for: "username"} Username
-        %input{type: "text", id: "username", name: "relationship[username]", autofocus: true}
+        %input{type: "text", id: "username", name: "invitation[username]", autofocus: true}
       %li
         %input{type: "submit", value: "Create"}
 %ul
@@ -24,4 +24,4 @@
   %li
     =link_to "update account", edit_path
   %li
-    =link_to "requests", relationships_requests_path
+    =link_to "requests", requests_path
