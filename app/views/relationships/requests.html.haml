@@ -1,0 +1,9 @@
+-@relationships.each do |relationship|
+  %form{method: "post", action: confirm_relationship(relationship)}
+    %input{type: "hidden", name: "_method", value: "put"}
+    %ul
+      %li
+        -relationship.invitee.profiles.each do |profile|
+          %input{type: "radio", name: "profile_id", value: profile.id.to_s}
+      %li
+        %input{type: "submit", value: "Connect"}

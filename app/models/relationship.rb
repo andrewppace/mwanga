@@ -7,6 +7,7 @@ class Relationship < ActiveRecord::Base
   #validations
   validates :invitor_id, presence: true
   validates :invitee_id, presence: true
+  validates :profile_id, presence: true, if: :profile_present_if_state_anything_but_pending
   validate :invitor_id_invitee_id_unique
 
   #state
@@ -37,6 +38,11 @@ class Relationship < ActiveRecord::Base
   end
 
 private
+
+  def profile_present_if_state_anything_but_pending
+    self.pending?
+  end
+  
   def invitor_id_invitee_id_unique
     Relationship.find_all_by_invitor_id(self.invitor_id).each do |relationship|
       if relationship.invitee_id == self.invitee_id

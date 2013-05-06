@@ -26,7 +26,19 @@ Mwanga::Application.routes.draw do
     resources :emails
     resources :addresses
   end
-  resources :relationships
+  
+  resources :invitations
+  resources :requests
+  
+  resources :relationships do
+    collection do
+      get "requests"
+    end
+    member do
+      put "confirm"
+    end
+  end
+  
   match "myinfo" => "contacts#myinfo"
   
   root to: "pages#home"

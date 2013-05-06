@@ -72,6 +72,10 @@ class User < ActiveRecord::Base
       u.password_hash == ::Digest::SHA1.hexdigest(password + u.password_salt + APP_SALT) ? u : false
     end
   end
+  
+  def requests
+    Relationship.where(invitee_id: self.id, state: "pending")
+  end
 
 private
   def create_contact
