@@ -6,16 +6,26 @@
     -flash.each do |key, msg|
       =content_tag :div, msg, :id => key
     %header
-      %nav
-        %ul
-          %li
-            =link_to "home", account_path
-          %li
-            =link_to "my info", myinfo_path
-          %li
-            =link_to "privacy", privacy_edit_path
-          %li
-            =link_to "logout", logout_path
+      -if @current_user
+        %nav
+          %ul
+            %li
+              =link_to "home", account_path
+            %li
+              =link_to "my info", myinfo_path
+            %li
+              =link_to "privacy", privacy_edit_path
+            %li
+              =link_to "logout", logout_path
+      -else
+        %nav
+          %ul
+            %li
+              =link_to "home", root_path
+            %li
+              =link_to "login", login_path
+            %li
+              =link_to "signup", signup_path
     %section{id: "main"}
       =yield
     %footer
