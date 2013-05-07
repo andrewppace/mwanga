@@ -1,0 +1,5 @@
+%div{class: "last_name"}
+  #{last_name.name} (#{link_to 'edit', edit_contact_last_name_path(last_name.contact, last_name)})
+  %form{method: "post", action: contact_last_name_path(last_name.contact, last_name)}
+    %input{type: "hidden", name: "_method", value: "delete"}
+    %input{type: "submit", value: "delete"}

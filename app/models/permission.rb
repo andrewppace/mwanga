@@ -55,11 +55,20 @@ class Permission < Struct.new(:user, :request)
         return true if user.contacts.select{|contact| contact.id.to_s == params[:contact_id]}.first.first_names.map(&:id).map(&:to_s).include?(params[:id])
       end
     end
-        
+      
+    #invitations controller  
     if user
       return true if controller == "invitations" && action.in?(%w(index create destroy))
     end 
 
+    #last_names controller
+    if user
+      return true if controller == "last_names" && action.in?(%w(index new create))
+      if controller == "last_names" && action.in?(%w(show edit update destroy))
+        return true if user.contacts.select{|contact| contact.id.to_s == params[:contact_id]}.first.last_names.map(&:id).map(&:to_s).include?(params[:id])
+      end
+    end
+    
     #pages controller
     return true if controller == "pages" && action.in?(%w(home))
     

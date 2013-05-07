@@ -1,0 +1,4 @@
+-@breadcrumbs.add "last names", contact_last_names_path(@contact)
+%h3 Last Names (#{link_to 'add', new_contact_last_name_path(@contact)})
+-@last_names.each do |last_name|
+  =render partial: "last_name", locals: {last_name: last_name}
