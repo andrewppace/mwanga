@@ -1,5 +1,15 @@
-%div 
-  Name: #{@contact.first_name} #{@contact.last_name} (#{link_to 'edit', edit_contact_path(@contact)})
+%div
+  First Names (#{link_to 'add', new_contact_first_name_path(@contact)})
+  %ul
+  -@contact.first_names.each do |first_name|
+    %li
+      First: #{first_name.name}  (#{link_to 'edit', edit_contact_first_name_path(@contact, first_name)})
+%div
+  Last Names (#{link_to 'add', new_contact_last_name_path(@contact)})
+  %ul
+  -@contact.last_names.each do |last_name|
+    %li
+      Last: #{last_name.name} (#{link_to 'edit', edit_contact_last_name_path(@contact, last_name)})
 %div 
   Emails (#{link_to "add", new_contact_email_path(@contact)})
   -@contact.emails.each do |email|

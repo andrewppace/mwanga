@@ -1,7 +1,6 @@
 Mwanga::Application.routes.draw do
   resources :relationships
 
-
   get "confirm/email"
 
   resources :emails
@@ -23,6 +22,8 @@ Mwanga::Application.routes.draw do
   match "confirm/email/:email_confirmation_salt" => "confirm#email"
   
   resources :contacts do
+    resources :first_names
+    resources :last_names
     resources :emails
     resources :addresses
   end

@@ -1,0 +1,12 @@
+%nav{id: "breadcrumbs"}
+  -@breadcrumbs.list.each_with_index do |hash, index|
+    -hash.each do |name, path|
+      -if @breadcrumbs.list.length > 1
+        -if index == 0 && index != @breadcrumbs.list.length - 1
+          =link_to name, path
+          &raquo;
+        -if index != 0 && index != @breadcrumbs.list.length - 1
+          =link_to name, path
+          &raquo;
+        -if index == @breadcrumbs.list.length - 1
+          =name

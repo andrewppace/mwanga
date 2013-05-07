@@ -40,11 +40,4 @@ class EmailsController < ApplicationController
     @email.destroy
     redirect_to(contact_path(@contact), notice: 'Email was successfully removed')
   end
-private
-  def ensure_contact
-    @contact = @current_user.contacts.select{|contact| contact.id.to_s == params[:contact_id]}.first
-    unless @contact
-      redirect_to account_path, :notice => "It appears that the contact you entered does not exist"
-    end
-  end
 end

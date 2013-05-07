@@ -1,9 +1,22 @@
 class ApplicationController < ActionController::Base
   before_filter :authorize
 #  before_filter :current_user
+  before_filter :create_breadcrumbs
 
   def current_user
     @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
+  end
+
+  def ensure_contact
+    @contact = @current_user.contacts.select{|contact| contact.id.to_s == params[:contact_id]}.first
+    unless @contact
+      redirect_to account_path, :notice => "It appears that the contact you entered does not exist"
+    end
+  end
+  
+  def create_breadcrumbs
+    @breadcrumbs = Breadcrumbs.new
+    @breadcrumbs.add("home", root_path)
   end
   
 #  def ensure_user

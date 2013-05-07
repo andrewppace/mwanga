@@ -1,0 +1,12 @@
+%form{method: "post", action: contact_first_name_path(@contact, @first_name)}
+  %input{type: "hidden", name: "_method", value: "put"}
+  %fieldset
+    %legend Update first name
+    %ul
+      %li
+        %label{for: "name"} Name
+        %input{type: "text", id: "first_name", value: @first_name.name, name: "first_name[name]"}
+        -unless @first_name.errors.empty? && @first_name.errors[:name].empty?
+          =@first_name.errors[:name].to_sentence
+      %li
+        %input{type: "submit", value: "Update First Name"}

@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    add_breadcrumb "my account", account_path
     @user = @current_user
   end
 

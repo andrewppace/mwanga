@@ -26,6 +26,7 @@
               =link_to "login", login_path
             %li
               =link_to "signup", signup_path
+      =render partial: "layouts/breadcrumbs"  
     %section{id: "main"}
       =yield
     %footer

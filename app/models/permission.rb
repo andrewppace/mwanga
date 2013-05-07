@@ -4,7 +4,7 @@ class Permission < Struct.new(:user, :request)
     controller = params[:controller]
     action = params[:action]
     
-    return true if controller.in?(%w(addresses confirm connections contacts emails invitations privacy profiles requests))
+    return true if controller.in?(%w(addresses confirm connections contacts emails first_names invitations last_names privacy profiles requests))
     return true if controller == "sessions" && action.in?(%w(destroy))
     return true if controller == "users" && action.in?(%w(show edit update destroy))    
   end
@@ -47,7 +47,15 @@ class Permission < Struct.new(:user, :request)
         return true if user.contacts.select{|contact| contact.id.to_s == params[:contact_id]}.first.emails.map(&:id).map(&:to_s).include?(params[:id])
       end
     end
-    
+
+    #first_names controller
+    if user
+      return true if controller == "first_names" && action.in?(%w(index new create))
+      if controller == "first_names" && action.in?(%w(show edit update destroy))
+        return true if user.contacts.select{|contact| contact.id.to_s == params[:contact_id]}.first.first_names.map(&:id).map(&:to_s).include?(params[:id])
+      end
+    end
+        
     if user
       return true if controller == "invitations" && action.in?(%w(index create destroy))
     end 

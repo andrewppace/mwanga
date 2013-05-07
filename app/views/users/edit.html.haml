@@ -1,4 +1,6 @@
 -@page_title = "Update your account"
+-add_breadcrumb "my account", account_path
+-add_breadcrumb "edit", edit_path
 %form{method: "post", action: update_path}
   %input{type: "hidden", name: "_method", value: "put"}
   %fieldset
