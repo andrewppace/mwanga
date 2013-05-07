@@ -1,6 +1,6 @@
 class AddressesController < ApplicationController
   before_filter :ensure_contact
-  add_breadcrumb "my account", account_path
+  before_filter :add_breadcrumbs
 
   def index
     @addresses = @contact.addresses
@@ -40,5 +40,10 @@ class AddressesController < ApplicationController
     @address = @contact.addresses.select{|address| address.id.to_s == params[:id]}.first
     @address.destroy
     redirect_to(contact_path(@contact), notice: 'address was successfully removed')
+  end
+private
+  def add_breadcrumbs
+    @breadcrumbs.add "my account", account_path
+    @breadcrumbs.add "#{@contact.first_names.first.name} #{@contact.last_names.first.name}", contact_path(@contact)
   end
 end

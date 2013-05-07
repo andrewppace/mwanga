@@ -79,7 +79,7 @@ class Permission < Struct.new(:user, :request)
 
     #profiles controller
     if user
-      return true if controller == "profiles" && action.in?(%w(index new create edit update destroy))
+      return true if controller == "profiles" && action.in?(%w(index new create show edit update destroy))
     end
     
     #requests controller

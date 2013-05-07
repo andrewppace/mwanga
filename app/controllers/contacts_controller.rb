@@ -1,4 +1,5 @@
 class ContactsController < ApplicationController
+  before_filter :add_breadcrumbs
   def index
     @contacts = @current_user.contacts
   end
@@ -43,5 +44,10 @@ class ContactsController < ApplicationController
     @contact = @current_user.contacts.select{|contact| contact.id.to_s == params[:id]}.first
     @contact.destroy
     redirect_to contacts_path, notice: "successfully removed contact"
+  end
+private
+  def add_breadcrumbs
+    @breadcrumbs.add "my account", account_path
+    @breadcrumbs.add "contacts", contacts_path
   end
 end

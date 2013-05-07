@@ -1,3 +1,5 @@
+-@breadcrumbs.add "first names", contact_first_names_path
+-@breadcrumbs.add "add", new_contact_first_name_path(@contact)
 %form{method: "post", action: contact_first_names_path(@contact)}
   %fieldset
     %legend Create a first name

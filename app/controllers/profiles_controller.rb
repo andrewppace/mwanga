@@ -1,4 +1,5 @@
 class ProfilesController < ApplicationController
+  before_filter :add_breadcrumbs
   def index
     @profiles = @current_user.profiles
   end
@@ -15,6 +16,10 @@ class ProfilesController < ApplicationController
     else
       render :new
     end
+  end
+  
+  def show
+    @profile = @current_user.profiles.select{|profile| profile.id.to_s == params[:id].to_s}.first  
   end
     
   def edit
@@ -34,5 +39,9 @@ class ProfilesController < ApplicationController
     @profile = @current_user.profiles.select{|profile| profile.id.to_s == params[:id]}.first
     @profile.destroy
     redirect_to account_path, notice: "Profile successfully destroyed"
+  end
+private
+  def add_breadcrumbs
+    @breadcrumbs.add "my account", account_path
   end
 end

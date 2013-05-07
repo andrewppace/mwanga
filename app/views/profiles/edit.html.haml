@@ -1,3 +1,6 @@
+-@breadcrumbs.add "profiles", profiles_path
+-@breadcrumbs.add "#{@profile.description} profile", profile_path(@profile)
+-@breadcrumbs.add "update", edit_profile_path(@profile)
 %form{method: "post", action: profile_path(@profile)}
   %fieldset
     %legend Update Profile

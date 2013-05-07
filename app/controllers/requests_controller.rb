@@ -1,4 +1,5 @@
 class RequestsController < ApplicationController
+  before_filter :add_breadcrumbs
   def index
     @requests = @current_user.requests
   end
@@ -23,5 +24,9 @@ class RequestsController < ApplicationController
     else
       redirect_to account_path, flash: {error: "You don't have permission to update that relationship"}
     end
+  end
+private
+  def add_breadcrumbs
+    @breadcrumbs.add "my account", account_path
   end
 end

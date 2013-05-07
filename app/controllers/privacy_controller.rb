@@ -1,4 +1,5 @@
 class PrivacyController < ApplicationController
+  before_filter :add_breadcrumbs
   def edit
     @user = @current_user
     if @user.profiles.empty?
@@ -26,5 +27,9 @@ class PrivacyController < ApplicationController
       end
     end
     redirect_to account_path, notice: "Your privacy settings were saved"
+  end
+private
+  def add_breadcrumbs
+    @breadcrumbs.add "my account", account_path
   end
 end

@@ -1,6 +1,6 @@
 %section
   =profile.description
-  =link_to "show", profile
+  =link_to "show", profile_path(profile)
   =link_to "edit", edit_profile_path(profile)
   %form{method: "post", action: profile_path(profile)}
     %input{type: "hidden", name: "_method", value: "delete"}

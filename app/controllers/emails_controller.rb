@@ -1,6 +1,6 @@
 class EmailsController < ApplicationController
   before_filter :ensure_contact
-
+  before_filter :add_breadcrumbs
   def index
     @emails = @contact.emails
   end
@@ -39,5 +39,10 @@ class EmailsController < ApplicationController
     @email = @contact.emails.select{|email| email.id.to_s == params[:id]}.first
     @email.destroy
     redirect_to(contact_path(@contact), notice: 'Email was successfully removed')
+  end
+private
+  def add_breadcrumbs
+    @breadcrumbs.add "my account", account_path
+    @breadcrumbs.add "#{@contact.first_names.first.name} #{@contact.last_names.first.name}", contact_path(@contact)
   end
 end

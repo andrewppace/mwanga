@@ -1,4 +1,5 @@
 class InvitationsController < ApplicationController
+  before_filter :add_breadcrumbs
   def index
     @invitations = @current_user.invitations
   end
@@ -26,5 +27,10 @@ class InvitationsController < ApplicationController
     else
       redirect_to account_path, flash: {error: "We weren't able to cancel that invitation"}
     end
-  end 
+  end
+private
+  def add_breadcrumbs
+    @breadcrumbs.add "my account", account_path
+    @breadcrumbs.add "#{@contact.first_names.first.name} #{@contact.last_names.first.name}", contact_path(@contact)
+  end
 end
