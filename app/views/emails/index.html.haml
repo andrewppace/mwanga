@@ -1,3 +1,3 @@
 -@emails.each do |email|
   =render partial: "email", locals: {email: email}
-= link_to 'New Email', new_email_path
+= link_to 'New Email', new_contact_email_path(@contact)

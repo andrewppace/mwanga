@@ -6,5 +6,6 @@ class ConnectionsController < ApplicationController
 private
   def add_breadcrumbs
     @breadcrumbs.add "my account", account_path
+    @breadcrumbs.add "connections", connections_path
   end
 end

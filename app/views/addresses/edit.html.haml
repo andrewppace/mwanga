@@ -1,4 +1,6 @@
 -@page_title = "Update an address for #{@contact.first_name} #{@contact.last_name}"
+-@breadcrumbs.add "#{@address.street}", contact_address_path(@contact, @address)
+-@breadcrumbs.add "update", edit_contact_address_path(@contact, @address)
 %form{method: "post", action: contact_address_path(@contact, @address)}
   %input{type: "hidden", name: "_method", value: "put"}
   %fieldset

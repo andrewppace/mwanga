@@ -1,4 +1,6 @@
 -@page_title = "Update an email for #{@contact.first_name} #{@contact.last_name}"
+-@breadcrumbs.add "#{@email.address}", contact_email_path(@contact, @email)
+-@breadcrumbs.add "update", edit_contact_email_path(@contact, @email)
 %form{method: "post", action: contact_email_path(@contact, @email)}
   %input{type: "hidden", name: "_method", value: "put"}
   %fieldset

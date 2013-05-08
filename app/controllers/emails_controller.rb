@@ -43,6 +43,8 @@ class EmailsController < ApplicationController
 private
   def add_breadcrumbs
     @breadcrumbs.add "my account", account_path
+    @breadcrumbs.add "contacts", contacts_path
     @breadcrumbs.add "#{@contact.first_names.first.name} #{@contact.last_names.first.name}", contact_path(@contact)
+    @breadcrumbs.add "emails", contact_emails_path(@contact)
   end
 end

@@ -1,4 +1,5 @@
--@breadcrumbs.add "first names", contact_last_names_path(@contact)
+-@breadcrumbs.add "last names", contact_last_names_path(@contact)
+-@breadcrumbs.add "#{@last_name.name}", contact_last_name_path(@contact, @last_name)
 -@breadcrumbs.add "edit", edit_contact_last_name_path(@contact, @last_name)
 %form{method: "post", action: contact_last_name_path(@contact, @last_name)}
   %input{type: "hidden", name: "_method", value: "put"}

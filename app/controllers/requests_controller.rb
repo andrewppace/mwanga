@@ -28,5 +28,6 @@ class RequestsController < ApplicationController
 private
   def add_breadcrumbs
     @breadcrumbs.add "my account", account_path
+    @breadcrumbs.add "requests", requests_path
   end
 end

@@ -1,0 +1,2 @@
+-@breadcrumbs.add "#{@address.street}", contact_address_path(@contact, @address)
+=render partial: "address", locals: {address: @address}
