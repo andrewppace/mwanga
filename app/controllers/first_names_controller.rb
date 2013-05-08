@@ -13,7 +13,7 @@ class FirstNamesController < ApplicationController
   def create
     @first_name = @contact.first_names.build(params[:first_name])
     if @first_name.save
-      redirect_to contact_first_names_path(@contact), notice: "successfully created first name"
+      redirect_to contact_first_name_path(@contact, @first_name), notice: "successfully created first name"
     else
       render :new
     end

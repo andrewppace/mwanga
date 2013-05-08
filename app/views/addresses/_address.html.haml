@@ -15,6 +15,7 @@
     %br
     =address.country
   %br
+  =link_to 'show', contact_address_path(address.contact, address)
   =link_to 'Edit', edit_contact_address_path(address.contact, address)
   %form{method: "post", action: contact_address_path(address.contact, address)}
     %input{type: "hidden", name: "_method", value: "delete"}
