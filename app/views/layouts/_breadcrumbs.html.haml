@@ -6,11 +6,11 @@
           -if index == 0 && index != @breadcrumbs.list.length - 1
             %li
               =link_to name, path
-              %span &raquo;
+              %span /
           -if index != 0 && index != @breadcrumbs.list.length - 1
             %li
               =link_to name, path
-              %span &raquo;
+              %span /
           -if index == @breadcrumbs.list.length - 1
             %li
               =name
