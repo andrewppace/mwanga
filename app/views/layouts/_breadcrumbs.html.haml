@@ -1,5 +1,5 @@
 %nav{id: "breadcrumbs"}
-  %ul{class: "breadcrumb"}
+  %ul
     -@breadcrumbs.list.each_with_index do |hash, index|
       -hash.each do |name, path|
         -if @breadcrumbs.list.length > 1

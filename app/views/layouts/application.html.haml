@@ -2,11 +2,11 @@
 %html
   %head
     %title Mwanga - #{@page_title || "An Enlightened Addressbook"}
-    =stylesheet_link_tag "bootstrap"
     =stylesheet_link_tag "application"
   %body
-    -flash.each do |key, msg|
-      =content_tag :div, msg, :id => key
+    -unless flash[:notice].blank?
+      %div{id: "flash-notice"}
+        =flash[:notice]
     %header
       -if @current_user
         %nav
@@ -28,8 +28,7 @@
               =link_to "login", login_path
             %li
               =link_to "signup", signup_path
-    %div{class: "container"}
-      =render partial: "layouts/breadcrumbs"  
-      %section{id: "main"}
-        =yield
+    %section{id: "main"}
+      =render partial: "layouts/breadcrumbs"
+      =yield
     %footer
