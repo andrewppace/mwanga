@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  layout "basic", only: [:new]
   def new
     @user = User.new(params[:user])
     if params[:user]
@@ -9,16 +10,16 @@ class SessionsController < ApplicationController
           if session[:redirect]
             redirect = session[:redirect]
             session[:redirect] = nil
-            redirect_to redirect, notice: "Logged in successfully"
+            redirect_to redirect, flash: {success: "Logged in successfully"}
           else
-            redirect_to account_path, notice: "Logged in successfully"
+            redirect_to account_path, flash: {success: "Logged in successfully"}
           end          
         else
-          @error = "Invalid username or password"
+          flash.now[:error] = "We're sorry, but the username and password you provided don't match our records"
           render :new         
         end
       else
-        @error = "Invalid username or password"
+        flash.now[:error] = "We're sorry, but the username and password you provided don't match our records"
         render :new      
       end
     end
@@ -27,6 +28,6 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     session[:redirect] = nil
-    redirect_to login_path, notice: "Logged out!"
+    redirect_to login_path, flash: {success: "Logged out successfully"}
   end
 end

@@ -4,11 +4,9 @@
     %title Mwanga - #{@page_title || "An Enlightened Addressbook"}
     =stylesheet_link_tag "application"
   %body
-    -unless flash[:notice].blank?
-      %div{id: "flash-notice"}
-        =flash[:notice]
+    =render partial: "layouts/flash", locals: {flash: flash}
     %header
-      %div{class: "navbar navbar-inverse"}
+      %div{class: "navbar"}
         %div{class: "navbar-inner"}
           %div{class: "container"}
             %ul{class: "nav pull-right"}

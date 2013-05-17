@@ -1,56 +1,24 @@
 -@page_title = "Signup for an account"
 -@breadcrumbs.add "signup", signup_path
-%form{method: "post", action: create_path, id: "signup-form", class: "form-horizontal"}
+%form{method: "post", action: create_path, class: "form-horizontal"}
   %fieldset
     %legend Signup for an account
 
-    %div{class: "control-group #{if @user.errors.empty? && @user.errors[:first_name].empty?; "error"; end}"}
-      %label{for: "first_name", class: "control-label"} First Name
-      %div{class: "controls"}
-        %input{type: "text", id: "first_name", value: @user.first_name, name: "user[first_name]", autofocus: true, class: "span4"}
-        -unless @user.errors.empty? && @user.errors[:first_name].empty?
-          =@user.errors[:first_name].to_sentence
+    =render partial: "forms/text", locals: {object: @user, method: "first_name", label: "First Name"}
+    =render partial: "forms/text", locals: {object: @user, method: "last_name", label: "Last Name"}
+    =render partial: "forms/text", locals: {object: @user, method: "username", label: "Username"}
+    =render partial: "forms/text", locals: {object: @user, method: "email", label: "Email"}
+    =render partial: "forms/password", locals: {object: @user, method: "password", label: "Password"}
+    =render partial: "forms/password", locals: {object: @user, method: "password_confirmation", label: "Confirm Password"}
 
-    %div{class: "control-group #{if @user.errors.empty? && @user.errors[:last_name].empty?; "error"; end}"}
-      %label{for: "last_name", class: "control-label"} Last Name
-      %div{class: "controls"}
-        %input{type: "text", id: "last_name", value: @user.last_name, name: "user[last_name]", class: "span4"}
-        -unless @user.errors.empty? && @user.errors[:last_name].empty?
-          =@user.errors[:last_name].to_sentence
-
-    %div{class: "control-group #{if @user.errors.empty? && @user.errors[:username].empty?; "error"; end}"}
-      %label{for: "username", class: "control-label"} Username
-      %div{class: "controls"}
-        %input{type: "text", id: "username", value: @user.username, name: "user[username]", class: "span4"}
-        -unless @user.errors.empty? && @user.errors[:username].empty?
-          =@user.errors[:username].to_sentence
-
-    %div{class: "control-group #{unless @user.errors.empty? && @user.errors[:email].empty?; "error"; end}"}
-      %label{for: "email", class: "control-label"} Email
-      %div{class: "controls"}
-        %input{type: "text", id: "email", value: @user.email, name: "user[email]", class: "span4"}
-        -unless @user.errors.empty? && @user.errors[:email].empty?
-          =@user.errors[:email].to_sentence
-
-    %div{class: "control-group #{if @user.errors.empty? && @user.errors[:password].empty?; "error"; end}"}
-      %label{for: "password", class: "control-label"} Password
-      %div{class: "controls"}
-        %input{type: "password", id: "password", value: @user.password, name: "user[password]", class: "span4"}
-        -unless @user.errors.empty? && @user.errors[:password].empty?
-          =@user.errors[:password].to_sentence
-
-    %div{class: "control-group"}
-      %label{for: "password_confirmation", class: "control-label"} Confirm password
-      %div{class: "controls"}
-        %input{type: "password", id: "password_confirmation", value: @user.password_confirmation, name: "user[password_confirmation]", class: "span4"}
-
-    %div{class: "control-group #{if @user.errors.empty? && @user.errors[:agreement].empty?; "error"; end}"}
+    %div{class: "control-group #{@user.errors[:agreement].empty? ? "" : "error"}"}
       %div{class: "controls"}
         %label{for: "agreement", class: "checkbox"}
           %input{type: "checkbox", id: "agreement", checked: @user.agreement, name: "user[agreement]", value: "yes"}
           By checking this, you agree to our terms and conditions.
         -unless @user.errors.empty? && @user.errors[:agreement].empty?
-          =@user.errors[:agreement].to_sentence
+          %span{class: "help-inline"}
+            =@user.errors[:agreement].to_sentence
 
     %div{class: "control-group"}
       %div{class: "controls"}

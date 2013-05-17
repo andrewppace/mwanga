@@ -1,6 +1,25 @@
 @import "bootstrap";
 
 header {
-  background-color: black;
+  background-color: #ededed;;
+  height: 130px;
+  margin-bottom: 10px;
+}
+
+.page-header a, .page-header a:hover, .page-header a:visited, .page-header a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+.page-header {
+  border-bottom: 0px;
+}
+
+footer {
+  background-color: #ededed;;
   height: 150px;
+}
+
+.alert {
+  margin-bottom: 0px;
 }

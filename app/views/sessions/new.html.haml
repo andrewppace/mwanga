@@ -1,19 +1,14 @@
 -@page_title = "Login to your account"
 -@breadcrumbs.add "login", login_path
--unless @error.nil?
-  %div
-    =@error
-%form{method: "post", action: login_path}
+
+%form{method: "post", action: login_path, class: "form-horizontal"}
   %fieldset
     %legend Login to your account
-    %ul
-      %li
-        %label{for: "username"} Username
-        %input{type: "text", id: "username", value: @user.username, name: "user[username]", autofocus: true}
-      %li
-        %label{for: "password"} Password
-        %input{type: "password", id: "password", value: @user.password, name: "user[password]"}
-      %li
-        %input{type: "submit", value: "Login"}
+    =render partial: "forms/text", locals: {object: @user, method: "username", label: "Username"}
+    =render partial: "forms/password", locals: {object: @user, method: "password", label: "Password"}
+
+    %div{class: "control-group"}
+      %div{class: "controls"}
+        %button{type: "submit", value: "Login", class: "btn btn-primary"} Login
         or
         =link_to "Not a member?", signup_path

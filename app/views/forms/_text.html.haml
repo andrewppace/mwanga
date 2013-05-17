@@ -1,0 +1,8 @@
+%div{class: "control-group #{object.errors[method].empty? ? "" : "error"}"}
+  %label{for: method, class: "control-label"}
+    =label
+  %div{class: "controls"}
+    %input{type: "text", id: method, value: object.send(method), name: "#{object.class.to_s.downcase}[#{method}]", class: "span4"}
+    -unless object.errors[method].empty?
+      %span{class: "help-inline"}
+        =object.errors[method].to_sentence

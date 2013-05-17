@@ -1,0 +1,12 @@
+-unless flash[:notice].blank?
+  %div{class: "alert alert-notice"}
+    =flash[:notice]
+-unless flash[:error].blank?
+  %div{class: "alert alert-error"}
+    =flash[:error]
+-unless flash[:success].blank?
+  %div{class: "alert alert-success"}
+    =flash[:success]
+-unless flash[:alert].blank?
+  %div{class: "alert alert-error"}
+    =flash[:alert]

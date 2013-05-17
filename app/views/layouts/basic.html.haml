@@ -1,0 +1,19 @@
+!!! 5
+%html
+  %head
+    %title Mwanga - #{@page_title || "An Enlightened Addressbook"}
+    =stylesheet_link_tag "application"
+  %body
+    =render partial: "layouts/flash", locals: {flash: flash}
+    %header
+      %div{class: "container"}
+        %div{class: "page-header"}
+          %h1
+            %a{href: root_path}
+              =image_tag "mwanga.png"
+            %small
+              the enlightened addressbook
+    %section{id: "main"}
+      %div{class: "container"}
+        =yield
+
