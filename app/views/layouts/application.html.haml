@@ -4,6 +4,16 @@
     %title Mwanga - #{@page_title || "An Enlightened Addressbook"}
     =stylesheet_link_tag "application"
   %body
+    %div{class: "navbar navbar-inverse"}
+      %div{class: "navbar-inner"}
+        %div{class: "container"}
+          %ul{class: "nav pull-right"}
+            %li
+              =link_to "home", root_path
+            %li
+              =link_to "login", login_path
+            %li
+              =link_to "signup", signup_path
     -unless flash[:notice].blank?
       %div{id: "flash-notice"}
         =flash[:notice]
@@ -19,16 +29,8 @@
               =link_to "privacy", privacy_edit_path
             %li
               =link_to "logout", logout_path
-      -else
-        %nav
-          %ul
-            %li
-              =link_to "home", root_path
-            %li
-              =link_to "login", login_path
-            %li
-              =link_to "signup", signup_path
     %section{id: "main"}
-      =render partial: "layouts/breadcrumbs"
-      =yield
+      %div{class: "container"}
+        =render partial: "layouts/breadcrumbs"
+        =yield
     %footer

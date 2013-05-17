@@ -1,16 +1,16 @@
-%nav{id: "breadcrumbs"}
-  %ul
+-unless @breadcrumbs.list.length <= 1
+  %ul{class: "breadcrumb"}
     -@breadcrumbs.list.each_with_index do |hash, index|
       -hash.each do |name, path|
         -if @breadcrumbs.list.length > 1
           -if index == 0 && index != @breadcrumbs.list.length - 1
             %li
               =link_to name, path
-              %span /
+              %span{class: "divider"} /
           -if index != 0 && index != @breadcrumbs.list.length - 1
             %li
               =link_to name, path
-              %span /
+              %span{class: "divider"} /
           -if index == @breadcrumbs.list.length - 1
-            %li
+            %li{class: "active"}
               =name

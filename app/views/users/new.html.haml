@@ -1,45 +1,49 @@
 -@page_title = "Signup for an account"
 -@breadcrumbs.add "signup", signup_path
-%form{method: "post", action: create_path, id: "signup-form"}
+%form{method: "post", action: create_path, id: "signup-form", class: "form-horizontal"}
   %fieldset
     %legend Signup for an account
-    %ul
-      %li
-        %label{for: "first_name", class: "required"} First Name
-        %input{type: "text", id: "first_name", value: @user.first_name, name: "user[first_name]", autofocus: true}
-        -unless @user.errors.empty? && @user.errors[:first_name].empty?
-          =@user.errors[:first_name].to_sentence
-      %li
-        %label{for: "last_name", class: "required"} Last Name
-        %input{type: "text", id: "last_name", value: @user.last_name, name: "user[last_name]"}
-        -unless @user.errors.empty? && @user.errors[:last_name].empty?
-          =@user.errors[:last_name].to_sentence
-      %li
-        %label{for: "username", class: "required"} Username
-        %input{type: "text", id: "username", value: @user.username, name: "user[username]"}
-        -unless @user.errors.empty? && @user.errors[:username].empty?
-          =@user.errors[:username].to_sentence
-      %li
-        %label{for: "email", class: "required"} Email
-        %input{type: "text", id: "email", value: @user.email, name: "user[email]"}
-        -unless @user.errors.empty? && @user.errors[:email].empty?
-          =@user.errors[:email].to_sentence
-      %li
-        %label{for: "password", class: "required"} Password
+    %div{class: "control-group"}
+      %label{for: "first_name", class: "control-label"} First Name
+      %input{type: "text", id: "first_name", value: @user.first_name, name: "user[first_name]", autofocus: true}
+      -unless @user.errors.empty? && @user.errors[:first_name].empty?
+        =@user.errors[:first_name].to_sentence
+    %div{class: "control-group"}
+      %label{for: "last_name", class: "control-label"} Last Name
+      %input{type: "text", id: "last_name", value: @user.last_name, name: "user[last_name]"}
+      -unless @user.errors.empty? && @user.errors[:last_name].empty?
+        =@user.errors[:last_name].to_sentence
+    %div{class: "control-group"}
+      %label{for: "username", class: "control-label"} Username
+      %input{type: "text", id: "username", value: @user.username, name: "user[username]"}
+      -unless @user.errors.empty? && @user.errors[:username].empty?
+        =@user.errors[:username].to_sentence
+    %div{class: "control-group"}
+      %label{for: "email", class: "control-label"} Email
+      %input{type: "text", id: "email", value: @user.email, name: "user[email]"}
+      -unless @user.errors.empty? && @user.errors[:email].empty?
+        =@user.errors[:email].to_sentence
+
+    %div{class: "control-group"}
+      %label{for: "password", class: "control-label"} Password
+      %div{class: "controls"}
         %input{type: "password", id: "password", value: @user.password, name: "user[password]"}
         -unless @user.errors.empty? && @user.errors[:password].empty?
           =@user.errors[:password].to_sentence
-      %li
-        %label{for: "password_confirmation", class: "required"} Confirm password
+
+    %div{class: "control-group"}
+      %label{for: "password_confirmation", class: "control-label"} Confirm password
+      %div{class: "controls"}
         %input{type: "password", id: "password_confirmation", value: @user.password_confirmation, name: "user[password_confirmation]"}
         -unless @user.errors.empty? && @user.errors[:password_confirmation].empty?
           =@user.errors[:password_confirmation].to_sentence
-      %li
+    %div{class: "control-group"}
+      %label{for: "agreement", class: "checkbox"}
         %input{type: "checkbox", id: "agreement", checked: @user.agreement, name: "user[agreement]", value: "yes"}
-        %label{for: "agreement", class: "required"} By checking this, you agree to our terms and conditions.
-        -unless @user.errors.empty? && @user.errors[:agreement].empty?
-          =@user.errors[:agreement].to_sentence
-      %li
-        %input{type: "submit", value: "Signup"}
-        or
-        =link_to "Already a member?", login_path
+        By checking this, you agree to our terms and conditions.
+      -unless @user.errors.empty? && @user.errors[:agreement].empty?
+        =@user.errors[:agreement].to_sentence
+
+    %input{type: "submit", value: "Signup"}
+    or
+    =link_to "Already a member?", login_path
