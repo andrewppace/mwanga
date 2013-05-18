@@ -4,7 +4,8 @@ Mwanga::Application.routes.draw do
   get "confirm/email"
 
   resources :emails
-
+  match "search" => "searches#index"
+  
   match "login" => "sessions#new"
   match "logout" => "sessions#destroy"
 
