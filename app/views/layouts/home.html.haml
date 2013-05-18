@@ -1,0 +1,11 @@
+!!! 5
+%html
+  %head
+    %title Mwanga - #{@page_title || "The Enlightened Addressbook"}
+    =stylesheet_link_tag "application"
+  %body
+    =render partial: "layouts/flash", locals: {flash: flash}
+    %header
+    %section{id: "main"}
+      =yield
+    %footer

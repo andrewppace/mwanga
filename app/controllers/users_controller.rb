@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   layout "basic", only: [:new, :create]
+
   def new
     @user = User.new
   end
@@ -16,6 +17,7 @@ class UsersController < ApplicationController
 
   def show
     @user = @current_user
+    render layout: "account"
   end
 
   def edit
