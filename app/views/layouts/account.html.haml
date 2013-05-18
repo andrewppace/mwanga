@@ -5,25 +5,47 @@
     =stylesheet_link_tag "application"
   %body
     =render partial: "layouts/flash", locals: {flash: flash}
-    %div{class: "navbar navbar-inverse navbar-fixed-top"}
-      %div{class: "navbar-inner"}
-        %div{class: "container-fluid"}
-          %ul{class: "nav"}
-            %li
-              %a{href: account_path, class: "brand"} My Account
-            %li
-              %a{href: contacts_path} Contacts
-            %form{method: "post", action: search_path, class: "search-form navbar-form pull-right"}
-              %input{type: "text", class: "input-medium search-query"}
-              %button{type: "submit", class: "btn"} Search
-          %p{class: "navbar-text pull-right"}
-            Logged in as #{@current_user.username}&nbsp;&nbsp;(#{link_to "logout?", logout_path})
+    %div{id: "account-navbar"}
+      %div{class: "navbar navbar-inverse"}
+        %div{class: "navbar-inner"}
+          %div{class: "container-fluid"}
+            %ul{class: "nav"}
+              %li
+                =link_to "Mwanga", root_path, class: "brand"
+              %li
+                %a{href: account_path} My Account
+              %li
+                %a{href: contacts_path} Contacts
+              %form{method: "post", action: search_path, class: "search-form navbar-form pull-right"}
+                %input{type: "text", class: "input-medium search-query"}
+                %button{type: "submit", class: "btn"} Search
+            %p{class: "navbar-text pull-right"}
+              Logged in as #{@current_user.username}&nbsp;&nbsp;(#{link_to "logout?", logout_path})
     %div{class: "container-fluid"}
       %div{class: "row-fluid"}
         %div{class: "span3"}
           %div{class: "well sidebar-nav"}
             %ul{class: "nav nav-list"}
               %li{class: "nav-header"}
+                Account
+              %li
+                =link_to "update my account", edit_path
+              %li
+                =link_to "create a profile", new_profile_path
+              %li
+                =link_to "privacy settings", privacy_edit_path
+              %li{class: "nav-header"}
                 Contacts
               %li
-                =link_to "Create a contact", new_contact_path
+                =link_to "create a contact", new_contact_path
+        %div{class: "span9"}
+          =render partial: "layouts/breadcrumbs"
+    %footer
+      %div{class: "container"}
+        %div{class: "row"}
+          %div{class: "span4"}
+            %ul{class: "navlist"}
+              %li{class: "nav-header"}
+                About
+          %div{class: "span4"}
+          %div{class: "span4"}

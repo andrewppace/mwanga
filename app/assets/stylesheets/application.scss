@@ -4,7 +4,6 @@
 header {
   background-color: #ededed;;
   height: 130px;
-  margin-bottom: 10px;
 }
 
 .page-header a, .page-header a:hover, .page-header a:visited, .page-header a:active {
@@ -27,5 +26,12 @@ footer {
 
 .sidebar-nav {
   padding: 9px 0;
-  margin: 60px 0;
+}
+
+#account-navbar {
+  background-color: #000000;
+}
+
+.form-horizontal {
+  margin-top: 10px;
 }
