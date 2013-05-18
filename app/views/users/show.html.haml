@@ -1,28 +1,13 @@
 -@breadcrumbs.add "my account", account_path
-=@user.username
-\|
-=@user.email
-\|
-=@user.created_at
-\|
-=@user.updated_at
-%form{method: "post", action: invitations_path}
+%form{method: "post", action: invitations_path, class: "form-horizontal"}
   %fieldset
     %legend Create a connection
-    %ul
-      %li
-        %label{for: "username"} Username
-        %input{type: "text", id: "username", name: "invitation[username]", autofocus: true}
-      %li
-        %input{type: "submit", value: "Create"}
-%ul
-  %li
-    =link_to "create a profile", new_profile_path
-  %li
-    =link_to "create a contact", new_contact_path
-  %li
-    =link_to "addressbook", contacts_path
-  %li
-    =link_to "update account", edit_path
-  %li
-    =link_to "requests", requests_path
+    %div{class: "control-group #{@invitation.errors[:username].empty? ? "" : "error"}"}
+      %label{for: "username", class: "control-label"}
+        Username
+      %div{class: "controls"}
+        %input{type: "text", id: "username", name: "invitation[username]", class: "span4"}
+        -unless @invitation.errors[:username].empty?
+          %span{class: "help-inline"}
+            =@invitation.errors[:username].to_sentence
+    =render partial: "forms/submit", locals: {value: "Invite"}

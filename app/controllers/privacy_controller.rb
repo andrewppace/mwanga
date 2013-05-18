@@ -1,5 +1,6 @@
 class PrivacyController < ApplicationController
   before_filter :add_breadcrumbs
+  layout "account"
   def edit
     @user = @current_user
     if @user.profiles.empty?

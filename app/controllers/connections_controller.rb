@@ -1,5 +1,6 @@
 class ConnectionsController < ApplicationController
   before_filter :add_breadcrumbs
+  layout "account"
   def index
     @contacts = @current_user.connections
   end

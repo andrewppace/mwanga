@@ -27,6 +27,12 @@
           %div{class: "well sidebar-nav"}
             %ul{class: "nav nav-list"}
               %li{class: "nav-header"}
+                Notifications
+              %li
+                =link_to "requests (#{@current_user.requests.count})", requests_path
+              %li
+                =link_to "invitations (#{@current_user.invitations.count})", invitations_path
+              %li{class: "nav-header"}
                 Account
               %li
                 =link_to "update my account", edit_path
@@ -35,11 +41,16 @@
               %li
                 =link_to "privacy settings", privacy_edit_path
               %li{class: "nav-header"}
-                Contacts
+                Addressbook
+              %li
+                =link_to "contacts (#{@current_user.contacts.count})", contacts_path
+              %li
+                =link_to "connections (#{@current_user.connections.count})", connections_path
               %li
                 =link_to "create a contact", new_contact_path
         %div{class: "span9"}
           =render partial: "layouts/breadcrumbs"
+          =yield
     %footer
       %div{class: "container"}
         %div{class: "row"}

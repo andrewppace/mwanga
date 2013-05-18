@@ -1,5 +1,6 @@
 class InvitationsController < ApplicationController
   before_filter :add_breadcrumbs
+  layout "account"
   def index
     @invitations = @current_user.invitations
   end
@@ -31,6 +32,5 @@ class InvitationsController < ApplicationController
 private
   def add_breadcrumbs
     @breadcrumbs.add "my account", account_path
-    @breadcrumbs.add "#{@contact.first_names.first.name} #{@contact.last_names.first.name}", contact_path(@contact)
   end
 end

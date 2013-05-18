@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
   before_filter :add_breadcrumbs
+  layout "account"
   def index
     @profiles = @current_user.profiles
   end

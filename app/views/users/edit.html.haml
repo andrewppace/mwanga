@@ -1,32 +1,22 @@
 -@page_title = "Update your account"
 -@breadcrumbs.add "my account", account_path
 -@breadcrumbs.add "update", edit_path
-%form{method: "post", action: update_path}
+%form{method: "post", action: update_path, class: "form-horizontal"}
   %input{type: "hidden", name: "_method", value: "put"}
   %fieldset
     %legend Update your account
-    %ul
-      %li
-        %label{for: "username"} Username
-        %input{type: "text", id: "username", value: @user.username, name: "user[username]", readonly: "true"}
-        -unless @user.errors.empty? && @user.errors[:username].empty?
-          =@user.errors[:username].to_sentence
-      %li
-        %label{for: "email"} Email
-        %input{type: "text", id: "email", value: @user.email, name: "user[email]"}
-        -unless @user.errors.empty? && @user.errors[:email].empty?
-          =@user.errors[:email].to_sentence
-      %li
-        %label{for: "password"} Password
-        %input{type: "password", id: "password", value: @user.password, name: "user[password]"}
-        -unless @user.errors.empty? && @user.errors[:password].empty?
-          =@user.errors[:password].to_sentence
-      %li
-        %label{for: "password_confirmation"} Confirm password
-        %input{type: "password", id: "password_confirmation", value: @user.password_confirmation, name: "user[password_confirmation]"}
-        -unless @user.errors.empty? && @user.errors[:password_confirmation].empty?
-          =@user.errors[:password_confirmation].to_sentence
-      %li
-        %input{type: "submit", value: "Update"}
-    %p
+    %span{class: "help-block"}
       *Leave the password fields blank to keep your password the same.
+    %div{class: "control-group #{@user.errors[:username].empty? ? "" : "error"}"}
+      %label{for: "username", class: "control-label"}
+        Username
+      %div{class: "controls"}
+        %input{type: "text", id: "username", value: @user.username, name: "user[username]", class: "span4", disabled: true}
+        -unless @user.errors[:username].empty?
+          %span{class: "help-inline"}
+            =@user.errors[:username].to_sentence
+    =render partial: "forms/text", locals: {object: @user, method: "email", label: "Email"}
+    =render partial: "forms/password", locals: {object: @user, method: "password", label: "Password"}
+    =render partial: "forms/password", locals: {object: @user, method: "password_confirmation", label: "Confirm Password"}
+    =render partial: "forms/submit", locals: {value: "Update"}
+

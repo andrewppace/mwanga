@@ -1,6 +1,6 @@
 -@breadcrumbs.add "privacy", privacy_edit_path
 %form{method: "post", action: privacy_update_path}
-  %table
+  %table{class: "table table-hover"}
     %caption Privacy Settings
     %thead
       %tr
@@ -9,16 +9,13 @@
           %th
             =profile.description
             =link_to "(edit)", edit_profile_path(profile)
-            %form{method: "post", action: profile_path(profile)}
-              %input{type: "hidden", name: "_method", value: "delete"}
-              %input{type: "submit", value: "Delete"}
     %tbody
-      %tr
+      %tr{class: "info"}
         %td{colspan: "#{@user.profiles.count + 1}"}
           Emails (#{link_to "add", new_contact_email_path(@user.contact)})
       -@user.contact.emails.each do |email|
         %tr
-          %th
+          %td
             #{email.description.blank?? "Address" : email.description}: #{email.address}
             =link_to "(edit)", edit_contact_email_path(@user.contact, email)
           -@user.profiles.each do |profile|
@@ -27,12 +24,12 @@
                 %input{type: "checkbox", checked: true, name: "profiles[#{profile.id}]emails[#{email.id}]", value: "true"}
               -else
                 %input{type: "checkbox", checked: false, name: "profiles[#{profile.id}]emails[#{email.id}]", value: "true"}
-      %tr
+      %tr{class: "info"}
         %td{colspan: "#{@user.profiles.count + 1}"}
           Addresses (#{link_to "add", new_contact_address_path(@user.contact)})
       -@user.contact.addresses.each do |address|
         %tr
-          %th
+          %td
             =render partial: "addresses/address", locals: {address: address}
           -@user.profiles.each do |profile|
             %td
@@ -40,7 +37,6 @@
                 %input{type: "checkbox", checked: true, name: "profiles[#{profile.id}]addresses[#{address.id}]", value: "true"}
               -else
                 %input{type: "checkbox", checked: false, name: "profiles[#{profile.id}]addresses[#{address.id}]", value: "true"}
-    %tfoot
-      %tr
-        %td{colspan: "#{@user.profiles.count + 1}"}
-          %input{type: "submit", value: "Save changes"}
+  %div{class: "control-group"}
+    %div{class: "controls"}
+      %button{type: "submit", value: "Submit", class: "btn btn-danger btn-block"} Save Changes

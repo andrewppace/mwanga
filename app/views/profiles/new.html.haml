@@ -1,12 +1,6 @@
 -@breadcrumbs.add "create a profile", new_profile_path
-%form{method: "post", action: profiles_path}
+%form{method: "post", action: profiles_path, class: "form-horizontal"}
   %fieldset
     %legend Create a Profile
-    %ul
-      %li
-        %label{for: "description"} Description
-        %input{type: "text", id: "description", value: @profile.description, name: "profile[description]"}
-        -unless @profile.errors.empty? && @profile.errors[:description].empty?
-          =@profile.errors[:description].to_sentence
-      %li
-        %input{type: "submit", value: "Create Profile"}
+    =render partial: "forms/text", locals: {object: @profile, method: "description", label: "Description"}
+    =render partial: "forms/submit", locals: {value: "Save Profile"}

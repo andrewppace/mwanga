@@ -1,5 +1,6 @@
 class RequestsController < ApplicationController
   before_filter :add_breadcrumbs
+  layout "account"
   def index
     @requests = @current_user.requests
   end

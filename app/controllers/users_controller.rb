@@ -17,11 +17,13 @@ class UsersController < ApplicationController
 
   def show
     @user = @current_user
+    @invitation = @user.invitations.build
     render layout: "account"
   end
 
   def edit
     @user = @current_user
+    render layout: "account"
   end
 
   def update
@@ -29,7 +31,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(params[:user])
       redirect_to(account_path, notice: 'Account was successfully updated.')
     else
-      render action: :edit
+      render action: :edit, layout: "account"
     end
   end
 
