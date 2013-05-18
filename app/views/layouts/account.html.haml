@@ -35,6 +35,8 @@
               %li{class: "nav-header"}
                 Account
               %li
+                =link_to "my contact info", contact_path(@current_user.contact)
+              %li
                 =link_to "update my account", edit_path
               %li
                 =link_to "create a profile", new_profile_path

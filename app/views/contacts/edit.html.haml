@@ -1,20 +1,10 @@
 -@page_title = "Update contact"
--@breadcrumbs.add "#{@contact.first_names.first.name} #{@contact.last_names.first.name}", contact_path(@contact)
+-@breadcrumbs.add "#{@contact.full_name}", contact_path(@contact)
 -@breadcrumbs.add "update", edit_contact_path(@contact)
-%form{method: "post", action: contact_path(@contact)}
+%form{method: "post", action: contact_path(@contact), class: "form-horizontal"}
   %input{type: "hidden", name: "_method", value: "put"}
   %fieldset
     %legend Update contact
-    %ul
-      %li
-        %label{for: "first_name"} First Name
-        %input{type: "text", id: "first_name", value: @contact.first_name, name: "contact[first_name]"}
-        -unless @contact.errors.empty? && @contact.errors[:first_name].empty?
-          =@contact.errors[:first_name].to_sentence
-      %li
-        %label{for: "last_name"} Last Name
-        %input{type: "text", id: "last_name", value: @contact.last_name, name: "contact[last_name]"}
-        -unless @contact.errors.empty? && @contact.errors[:last_name].empty?
-          =@contact.errors[:last_name].to_sentence
-      %li
-        %input{type: "submit", value: "Update"}
+    =render partial: "forms/text", locals: {object: @contact, method: "first_name", label: "First Name"}
+    =render partial: "forms/text", locals: {object: @contact, method: "last_name", label: "Last Name"}
+    =render partial: "forms/submit", locals: {value: "Update"}

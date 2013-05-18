@@ -1,18 +1,8 @@
 -@page_title = "Create a contact"
 -@breadcrumbs.add "create", new_contact_path
-%form{method: "post", action: contacts_path}
+%form{method: "post", action: contacts_path, class: "form-horizontal"}
   %fieldset
     %legend Create a contact
-    %ul
-      %li
-        %label{for: "first_name"} First Name
-        %input{type: "text", id: "first_name", value: @contact.first_name, name: "contact[first_name]"}
-        -unless @contact.errors.empty? && @contact.errors[:first_name].empty?
-          =@contact.errors[:first_name].to_sentence
-      %li
-        %label{for: "last_name"} Last Name
-        %input{type: "text", id: "last_name", value: @contact.last_name, name: "contact[last_name]"}
-        -unless @contact.errors.empty? && @contact.errors[:last_name].empty?
-          =@contact.errors[:last_name].to_sentence
-      %li
-        %input{type: "submit", value: "Save Contact"}
+    =render partial: "forms/text", locals: {object: @contact, method: "first_name", label: "First Name"}
+    =render partial: "forms/text", locals: {object: @contact, method: "last_name", label: "Last Name"}
+    =render partial: "forms/submit", locals: {value: "Save"}
