@@ -1,10 +1,11 @@
-%h1 Contacts
-- @contacts.each do |contact|
-  %p
-    #{contact.first_name} #{contact.last_name}
-    -if contact.id.to_s == contact.user.contact_id.to_s
-      *
-    = link_to 'Show', contact
-    = link_to 'Edit', edit_contact_path(contact)
-
+-contact_groups = @contacts.each_slice(3).to_a
+-contact_groups.each do |group|
+  %div{class: "row"}
+    %ul{class: "thumbnails"}
+      -group.each do |contact|
+        %li{class: "span4"}
+          %div{class: "thumbnail"}
+            %h3
+              =contact.full_name
+            =link_to "Details &raquo;".html_safe, contact_path(contact), class: "btn btn-primary"
 = link_to 'New Contact', new_contact_path
